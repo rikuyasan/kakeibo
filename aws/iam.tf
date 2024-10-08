@@ -55,7 +55,7 @@ data "aws_iam_policy_document" "s3" {
       "s3:GetBucketLocation"
     ]
     resources = [
-      aws_s3_bucket.backend.arn
+      "${aws_s3_bucket.backend.arn}/*"
     ]
   }
 }
@@ -83,7 +83,7 @@ data "aws_iam_policy_document" "secrets_manager" {
       "secretsmanager:GetSecretValue",
     ]
     resources = [
-      "arn:aws:secretsmanager:${local.region}:${local.id}:secret:your-secret-name-*",
+      local.secrets_arn,
     ]
     effect = "Allow"
   }

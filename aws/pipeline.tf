@@ -67,7 +67,7 @@ resource "aws_codebuild_project" "main" {
 # codedeploy app
 ############################################
 resource "aws_codedeploy_app" "main" {
-  name             = "${local.container_name}-backend"
+  name             = local.container_name
   compute_platform = "ECS"
 }
 
@@ -77,7 +77,7 @@ resource "aws_codedeploy_app" "main" {
 resource "aws_codedeploy_deployment_group" "main" {
   app_name               = aws_codedeploy_app.main.name
   deployment_config_name = "CodeDeployDefault.ECSAllAtOnce"
-  deployment_group_name  = "${local.container_name}-backend"
+  deployment_group_name  = local.container_name
   service_role_arn       = aws_iam_role.codedeploy.arn
 
   blue_green_deployment_config {
@@ -138,7 +138,7 @@ resource "aws_codepipeline" "main" {
       source_action_name = "Source"
       push {
         file_paths {
-          includes = ["./backend"]
+          includes = ["./backend/**"]
         }
         branches {
           includes = ["main"]
@@ -179,7 +179,7 @@ resource "aws_codepipeline" "main" {
     action {
       category = "Build"
       configuration = {
-        "ProjectName" = "${local.container_name}-backend"
+        "ProjectName" = aws_codebuild_project.main.name
       }
       input_artifacts = [
         "SourceArtifact",
