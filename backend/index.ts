@@ -5,9 +5,9 @@ import mysql, { ResultSetHeader } from "mysql2";
 const app: Application = express();
 
 const corsOptions = {
-    origin: 'http://kakeibo.rikuyasan.com:80', // 許可したいオリジンを指定
-    credentials: true, // レスポンスヘッダーにAccess-Control-Allow-Credentialsを追加。ユーザー認証等を行う場合は、これがないとブラウザがレスポンスを捨ててしまうそう。
-    optionsSuccessStatus: 200 // レスポンスのHTTPステータスコードを「200(成功)」に設定
+    origin: 'http://kakeibo.rikuyasan.com:80',
+    credentials: true,
+    optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
