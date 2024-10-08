@@ -1,0 +1,26 @@
+FROM node:22.3.0-slim
+
+WORKDIR /usr/src/app
+
+ARG DB_PORT
+ARG DB_HOST
+ARG DB_NAME
+ARG DB_PASSWORD
+ARG DB_USER
+
+ENV DB_PORT=$DB_PORT
+ENV DB_HOST=$DB_HOST
+ENV DB_NAME=$DB_NAME
+ENV DB_PASSWORD=$DB_PASSWORD
+ENV DB_USER=$DB_USER
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+RUN npm run tsc
+
+EXPOSE 80
+
+CMD ["npm", "start"]

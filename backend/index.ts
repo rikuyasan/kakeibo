@@ -3,22 +3,16 @@ import cors from 'cors';
 import mysql, { ResultSetHeader } from "mysql2";
 
 const app: Application = express();
+
 const corsOptions = {
-    origin: 'http://localhost:3000', // 許可したいオリジンを指定
+    origin: 'http://kakeibo.rikuyasan.com:80', // 許可したいオリジンを指定
     credentials: true, // レスポンスヘッダーにAccess-Control-Allow-Credentialsを追加。ユーザー認証等を行う場合は、これがないとブラウザがレスポンスを捨ててしまうそう。
     optionsSuccessStatus: 200 // レスポンスのHTTPステータスコードを「200(成功)」に設定
 }
 
-// よう修正
-// const corsOptions = {
-//     origin: 'http://kakeibo.rikuyasan.com:3000', // 許可したいオリジンを指定
-//     credentials: true, // レスポンスヘッダーにAccess-Control-Allow-Credentialsを追加。ユーザー認証等を行う場合は、これがないとブラウザがレスポンスを捨ててしまうそう。
-//     optionsSuccessStatus: 200 // レスポンスのHTTPステータスコードを「200(成功)」に設定
-// }
-
 app.use(cors(corsOptions));
 app.use(express.json());
-const PORT = 3001;
+const PORT = 80;
 
 // サーバー立ち上げ(ローカル)
 try {
@@ -32,12 +26,13 @@ try {
 
 // データベース接続
 const connection = mysql.createConnection({
-    host: "127.0.0.1",
-    port: 3307,
-    user: "csv_db",
-    password: "rikuya",
-    database: "rakuten_card",
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
+
 connection.connect((error) => {
     if (error) {
         console.error("Error connecting to MySQL: ", error);
