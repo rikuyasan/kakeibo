@@ -51,6 +51,8 @@ jobs:
 
     - name: S3 Sync
       run: |
+        cd ./frontend
+        pwd
         aws s3 sync ./build ${{ secrets.AWS_S3_BUCKET_NAME }} \
         --delete --cache-control "no-cache" \
         --region ap-northeast-1
