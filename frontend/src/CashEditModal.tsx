@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useMemo } from "react";
 import { useForm } from 'react-hook-form';
 import Modal from "react-modal";
 import { EventInput } from "@fullcalendar/core";
@@ -44,7 +44,7 @@ interface ColorPalette {
 
 function CashEditModal({ modal, setModal, listData, onReload }: EditrModal) {
     const colorArray: string[] = ['#2E86C1', '#28B463', '#F39C12', '#8E44AD', '#E74C3C', '#1ABC9C', '#D35400', '#5D6D7E'];
-    const colorPalette: ColorPalette = {
+    const colorPalette: ColorPalette = useMemo(() => ({
         '#2E86C1': '旅行',
         '#28B463': '経費',
         '#F39C12': '交通費',
@@ -53,14 +53,14 @@ function CashEditModal({ modal, setModal, listData, onReload }: EditrModal) {
         '#1ABC9C': '外出',
         '#D35400': '娯楽',
         '#5D6D7E': 'その他'
-    };
+    }), []);
     const [selectCategory, setSelectCategory] = useState<string>(colorPalette[listData.backgroundColor as keyof ColorPalette]);
 
     // 初回レンダリングのみ実行
     useLayoutEffect(() => {
         setSelectCategory(colorPalette[listData.backgroundColor as keyof ColorPalette]);
         console.log(selectCategory);
-    }, []);
+    }, [colorPalette, listData.backgroundColor, selectCategory]);
 
     const defaultValues = {
         date: listData.start as string,

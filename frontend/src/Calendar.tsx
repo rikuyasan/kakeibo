@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import { CalendarApi, EventInput, EventClickArg } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -35,7 +35,7 @@ function Calendar({ date, data, onDateClick, detailDate }: CalenderProps) {
   const calendarRef = useRef<FullCalendar | null>(null);
   const [events, setEvents] = useState<EventInput[]>([]);
 
-  const invertedColorPalette: InvertedColorPalette = {
+  const invertedColorPalette: InvertedColorPalette = useMemo(() => ({
     '旅行': '#2E86C1',
     '経費': '#28B463',
     '交通費': '#F39C12',
@@ -44,7 +44,7 @@ function Calendar({ date, data, onDateClick, detailDate }: CalenderProps) {
     '外出': '#1ABC9C',
     '娯楽': '#D35400',
     'その他': '#5D6D7E'
-  };
+  }), []);
   
   const handleDateClick = useCallback((arg: DateClickArg) => {
     detailDate(arg.dateStr);
@@ -65,7 +65,7 @@ function Calendar({ date, data, onDateClick, detailDate }: CalenderProps) {
     }
   }, [date]);
 
-  const convertToCalenderObject = (cardData: CardData[]): EventInput[] => {
+  const convertToCalenderObject = useCallback((cardData: CardData[]): EventInput[] => {
     return cardData.map((item) => {
       const formattedDate = item.day.replace(/\//g, "-");
       const payMethod = 500 > item.id ? "rakuten" : (item.id < 1000 ? "aeon" : "cash");
@@ -86,12 +86,12 @@ function Calendar({ date, data, onDateClick, detailDate }: CalenderProps) {
         }
       };
     });
-  };
+  },[invertedColorPalette]);
 
   useEffect(() => {
     const calenderEvents = convertToCalenderObject(data);
     setEvents(calenderEvents);
-  }, [data]);
+  }, [data,convertToCalenderObject]);
 
   return (
     <div className="calendar">
