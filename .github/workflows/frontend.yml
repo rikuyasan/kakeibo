@@ -45,12 +45,13 @@ jobs:
 
     - name: Build
       run: |
+        cd ./frontend
         npm install
         npm run build
 
     - name: S3 Sync
       run: |
-        aws s3 sync ./frontend/build ${{ secrets.AWS_S3_BUCKET_NAME }} \
+        aws s3 sync ./build ${{ secrets.AWS_S3_BUCKET_NAME }} \
         --delete --cache-control "no-cache" \
         --region ap-northeast-1
 
