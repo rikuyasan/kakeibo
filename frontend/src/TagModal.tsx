@@ -49,7 +49,7 @@ const TagModal = ({ modal, setModal, id, month, payMethod, setData, data, date, 
             const category: string = colorPalette[color as keyof ColorPalette];
             const paticularId: number = +id;
             try {
-                await fetch(`http://127.0.0.1:3001/${payMethod}/tag?currentMonth=${month}`, {
+                await fetch(`${process.env.REACT_APP_API}/${payMethod}/tag?currentMonth=${month}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

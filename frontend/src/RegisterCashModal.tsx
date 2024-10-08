@@ -125,7 +125,7 @@ function RegisterCashModal({ modal, setModal, onHandle }: RegisterModal) {
         setModal(false);
         const postNewTag = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:3001/cash/new?currentMonth=${month}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_CASH}/new?currentMonth=${month}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

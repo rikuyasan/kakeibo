@@ -153,7 +153,7 @@ function CashEditModal({ modal, setModal, listData, onReload }: EditrModal) {
         setModal(false);
         const postEditTag = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:3001/cash/edit?currentMonth=${month}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_CASH}/edit?currentMonth=${month}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ function CashEditModal({ modal, setModal, listData, onReload }: EditrModal) {
                     />
                     {isSubmitted && <div style={{ color: 'red' }}>{errors.date?.message}</div>}
                 </div>
-                <div　className="input-format">
+                <div className="input-format">
                     <label
                         htmlFor="description"
                         style={{
@@ -215,7 +215,7 @@ function CashEditModal({ modal, setModal, listData, onReload }: EditrModal) {
                     </label>
                     <input
                         type="text"
-                        placeholder="例：パチンコで溶かしました。。"
+                        placeholder="例：大学の昼飯代"
                         id="description"
                         defaultValue={defaultValues.description}
                         {...descriptionRequired}

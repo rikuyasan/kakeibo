@@ -78,7 +78,7 @@ function CalendarDetail({ onDateClick, detail, setData, data, date, onUpdateTag,
         const now = `${nowYear}${nowMonth}`;
         const deleteCashData = async () => {
             try {
-                await fetch(`http://127.0.0.1:3001/cash/delete?currentMonth=${now}`, {
+                await fetch(`${process.env.REACT_APP_API_CASH}/delete?currentMonth=${now}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

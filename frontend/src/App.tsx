@@ -39,14 +39,11 @@ function App() {
 
   // データ取得と更新
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_RAKUTEN);
-    console.log(process.env.REACT_APP_API_AEON);
-    console.log(process.env.REACT_APP_API_CASH);
     const fetchData = async () => {
       const currentMonth = format(date, 'yyyyMM');
       const getRakutenData = async (): Promise<CardData[]> => {
         try {
-          const response = await fetch(`http://127.0.0.1:3001/rakuten?currentMonth=${currentMonth}`);
+          const response = await fetch(`${process.env.REACT_APP_API_RAKUTEN}?currentMonth=${currentMonth}`);
           const data = await response.json();
           return data;
         } catch (error) {
@@ -56,7 +53,7 @@ function App() {
       };
       const getAeonData = async (): Promise<CardData[]> => {
         try {
-          const response = await fetch(`http://127.0.0.1:3001/aeon?currentMonth=${currentMonth}`);
+          const response = await fetch(`${process.env.REACT_APP_API_AEON}?currentMonth=${currentMonth}`);
           const data = await response.json();
           return data;
         } catch (error) {
@@ -66,7 +63,7 @@ function App() {
       };
       const getCashData = async (): Promise<CardData[]> => {
         try {
-          const response = await fetch(`http://127.0.0.1:3001/cash?currentMonth=${currentMonth}`);
+          const response = await fetch(`${process.env.REACT_APP_API_CASH}?currentMonth=${currentMonth}`);
           const data = await response.json();
           return data;
         } catch (error) {
@@ -148,9 +145,9 @@ function App() {
       const currentMonth = format(new Date(+nowYear, +nowMonth - 1, +nowDate), 'yyyyMM');
       try {
         const [rakutenData, aeonData, cashData] = await Promise.all([
-          fetch(`http://127.0.0.1:3001/rakuten?currentMonth=${currentMonth}`).then(res => res.json()),
-          fetch(`http://127.0.0.1:3001/aeon?currentMonth=${currentMonth}`).then(res => res.json()),
-          fetch(`http://127.0.0.1:3001/cash?currentMonth=${currentMonth}`).then(res => res.json())
+          fetch(`${process.env.REACT_APP_API_RAKUTEN}?currentMonth=${currentMonth}`).then(res => res.json()),
+          fetch(`${process.env.REACT_APP_API_AEON}?currentMonth=${currentMonth}`).then(res => res.json()),
+          fetch(`${process.env.REACT_APP_API_CASH}?currentMonth=${currentMonth}`).then(res => res.json())
         ]);
         return [...rakutenData, ...aeonData, ...cashData];
       } catch (error) {
