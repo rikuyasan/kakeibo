@@ -39,9 +39,9 @@ function App() {
 
   // データ取得と更新
   useEffect(() => {
-    console.log(process.env.API_RAKUTEN);
-    console.log(process.env.API_AEON);
-    console.log(process.env.API_CASH);
+    console.log(process.env.REACT_APP_API_RAKUTEN);
+    console.log(process.env.REACT_APP_API_AEON);
+    console.log(process.env.REACT_APP_API_CASH);
     const fetchData = async () => {
       const currentMonth = format(date, 'yyyyMM');
       const getRakutenData = async (): Promise<CardData[]> => {
