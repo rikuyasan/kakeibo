@@ -1,0 +1,433 @@
+.container {
+  display: flex;
+  justify-content: center; /* 中央に配置 */
+  height: 85vh;
+}
+
+.calendar {
+  width: 50%; /* カレンダーが左半分を占有 */
+  z-index: 200;
+}
+
+.total-cost {
+  width: 50%; /* トータルが右半分を占有 */
+  padding: 20px;
+}
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px; /* カード間の余白を追加 */
+}
+
+.rakutenTotal, .aeonTotal, .cashTotal, .moneyTotal {
+  width: 48%; /* 2つのdivが一行に収まる */
+  font-size: large;
+  font-weight: bold;
+  padding: 15px; /* 余白を広げてテキストを目立たせる */
+  color: white;
+  border-radius: 8px;
+}
+
+.rakutenTotal {
+  background-color: #6D2E1C;
+}
+
+.aeonTotal {
+  background-color: #C71585;
+}
+
+.cashTotal {
+  background-color: #556B2F;
+}
+
+.moneyTotal {
+  background-color: #2C3539;
+}
+
+/* ボタンのスタイル */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 40px; /* 全体的に下げる */
+}
+
+.category-container-total {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 1行に4つ並べる */
+  gap: 10px; /* 各カテゴリーの間に余白を設定 */
+}
+
+.category-total {
+  font-size: medium;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* 土曜日のスタイル */
+.fc-day-sat {
+  background-color: #f0f8ff;
+}
+
+/* 日曜日のスタイル */
+.fc-day-sun {
+  background-color: #ffe4e1;
+}
+
+.fc-day-mon, 
+.fc-day-tue, 
+.fc-day-wed, 
+.fc-day-thu, 
+.fc-day-fri {
+    background-color: white; /* 任意の薄い水色 */
+}
+
+.fc {
+  z-index: 500;
+  position: relative;
+}
+
+.custom-calendar-event {
+  border-width: 3px !important; /* ボーダーの太さを変更 */
+  font-weight: bold !important; /* 文字サイズを変更 */
+}
+
+.category_button:active {
+  border: solid 4px palevioletred;
+}
+
+.category_button_graph {
+  background-color: #f0f0f0;
+  border: solid 2px #ccc;
+  padding: 10px 30px; /* ボタンサイズを調整 */
+  font-size: 16px; /* 文字が改行されないように調整 */
+  font-weight: bold;
+  color: #333;
+  transition: background-color 0.3s, border 0.3s;
+  margin: 0;
+  white-space: nowrap; /* 文字の改行を防止 */
+  flex: 1;
+  border-right: none; /* ボタン間の境界線をなくす */
+}
+
+.category_button_graph:first-child {
+  border-radius: 10px 0 0 10px; /* 左端ボタンの左側に角丸 */
+}
+
+.category_button_graph:last-child {
+  border-right: solid 2px #ccc;
+  border-radius: 0 10px 10px 0; /* 右端ボタンの右側に角丸 */
+}
+
+.category_button_graph.active {
+  border: solid 4px palevioletred;
+  background-color: #ffe4e1; /* 押された時の内側の色も変わる */
+}
+
+.category_button_graph.rakuten.active {
+  background-color: #6D2E1C;
+  color: white;
+}
+
+.category_button_graph.aeon.active {
+  background-color: #C71585;
+  color: white;
+}
+
+.category_button_graph.cash.active {
+  background-color: #556B2F;
+  color: white;
+}
+
+.category_button_graph.total.active {
+  background-color: #2C3539;
+  color: white;
+}
+
+.graph-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%; /* コンテナ全体を中央に */
+  height: 100%; /* コンテナの高さを100%に設定 */
+  margin: 0; /* マージンをゼロに設定 */
+  padding: 0; /* パディングをゼロに設定 */
+}
+
+.chart-wrapper {
+  width: 700px; /* グラフの幅を大きく調整 */
+  height: 700px; /* グラフの高さも調整 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* 全体が動かないように固定 */
+}
+
+.piechart-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  font-size: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* モーダルの罰ボタン */
+.close-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #c0392b;
+}
+
+.batsu{
+  font-size: 100%;/*ボタンの大きさ*/
+  font-weight: bold;
+  border: 1px solid #999;
+  color: #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  width: 1.3em;
+  line-height: 1.3em;
+  cursor: pointer;
+  transition: .2s;
+}
+  
+.batsu:hover{
+  background: #c0392b;
+  border-color: #c0392b;
+  color: #FFF;
+}
+
+.batsu:active {
+  background-color: #a93226; /* クリック時にさらに濃い赤色 */
+}
+
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4つのカテゴリーを一行に表示 */
+  grid-gap: 10px; /* ボタン間のスペース */
+  margin-bottom: 20px;
+}
+
+/* フォーム全体のスタイル */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  width: 60%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+label {
+  font-weight: bold;
+  font-size: large;
+}
+
+button#submit {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: large;
+}
+
+button#submit:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.input-format {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ヘッダー */
+header {
+  width: 100%; /* 幅いっぱいを指定 */
+  height: 150px; /* 高さを50pxに指定 */
+  background: #ADD8E6; /* 背景色にグレーを指定 */
+  padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+  box-sizing: border-box; /* padding分を含んで幅を100%にするため */
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 0; /* 上下の固定位置を上から0pxにする */
+  left: 0; /* 左右の固定位置を左から0pxにする */
+  z-index: 900;
+}
+
+.transfer-month {
+  font-size: large;
+  font-weight: bold;
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  transition: box-shadow 0.3s ease; /* ホバー時の影をスムーズに表示 */
+}
+
+.transfer-month:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加 */
+}
+
+.transfer-month:active {
+  background-color: #f0f0f0; /* 少し暗めの背景色 */
+}
+
+.monthheader {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 30px;
+  padding-bottom: 20px;
+}
+
+.nowmonth {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+body {
+  padding-top: 160px; /* ヘッダーの後ろに要素が隠れないようにするため */
+  background-color: white;
+}
+
+.app-button {
+  font-size: large;
+  font-weight: bold;
+  background-color: #5dade2;
+  color: white;
+  transition: box-shadow 0.3s ease; /* ホバー時の影をスムーズに表示 */
+  border: none;
+  margin-left: 40px;
+  border-radius: 7px;
+  padding: 9px;
+}
+
+.app-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加 */
+}
+
+.app-button:active {
+  background-color: #3498db;
+}
+
+/* カレンダーの詳細 */
+/* 全体の幅を50%にする */
+.calendar-container {
+  width: 50%;
+  margin: 0 auto; /* 水平方向に中央寄せ */
+  padding: 20px;
+  border-radius: 10px; /* 少し角丸に */
+}
+
+/* タイトルのスタイル */
+.calendar-container h2 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #34495e;
+}
+
+/* 各イベントのスタイル */
+.event-detail {
+  background-color: #5D6D7E; /* デフォルト背景色 */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-detail h3 {
+  margin: 0 0 5px;
+  font-size: 1.2em;
+}
+
+.event-detail p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/* ボタンスタイル */
+.detail-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.detail-button:hover {
+  background-color: #2980b9; /* ホバー時に色を少し濃く */
+}
+
+.detail-button:active {
+  background-color: #1f618d; /* 押したときにさらに濃く */
+}
+
+.edit-button {
+  background-color: gainsboro;
+  font-size: medium;
+  font-weight: bold;
+  border: none;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-left: 20px;
+  transition: background-color 0.3s ease; /* スムーズな色変化を追加 */
+}
+
+.edit-button:hover {
+  background-color: darkgray; /* ホバーしたときの色 */
+}
+
+.edit-button:active {
+  background-color: gray; /* 押したときの色 */
+}

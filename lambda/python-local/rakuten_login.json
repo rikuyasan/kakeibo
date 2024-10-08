@@ -1,0 +1,8 @@
+{
+    "rakuten": {
+        "url": "https://www.rakuten-card.co.jp/e-navi/",
+        "id": "rikusansan@gmail.com",
+        "pass": "qwerasdzxcvZ2",
+        "csv_url": "https://www.rakuten-card.co.jp/e-navi/members/statement/index.xhtml?l-id=enavi_top_info-card_statement"
+    }
+}
