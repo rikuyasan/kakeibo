@@ -62,3 +62,13 @@ resource "aws_security_group_rule" "cloudfront" {
 data "aws_ec2_managed_prefix_list" "cloudfront" {
   name = "com.amazonaws.global.cloudfront.origin-facing"
 }
+
+# # dbからの通信を許可
+# resource "aws_security_group_rule" "db" {
+#   from_port                = 3306
+#   protocol                 = "tcp"
+#   security_group_id        = "sg-086b3bffe65973914"
+#   source_security_group_id = aws_security_group.private.id
+#   to_port                  = 3306
+#   type                     = "ingress"
+# }
