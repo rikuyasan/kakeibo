@@ -88,6 +88,7 @@ resource "aws_ecs_service" "main" {
   name                    = local.container_name
   platform_version        = local.platform_version
   propagate_tags          = "NONE"
+  enable_execute_command  = true
   task_definition         = data.aws_ecs_task_definition.main.arn
 
   deployment_controller {
