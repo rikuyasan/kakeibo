@@ -56,7 +56,8 @@
   設定項目は日付、概要、価格、タグの4つ。  
   設定項目を後ほど変更することも可能。(e. 日毎の利用額詳細)  
 
-  ![alt text](<スクリーンショット 2024-11-30 16.23.34.png>)
+  <img width="500" alt="スクリーンショット 2024-11-30 16 23 34" src="https://github.com/user-attachments/assets/2775c57a-8f64-4307-9990-326679f25af4">
+
 </details>
 
 <details>
@@ -69,7 +70,8 @@
   利用額の外枠は支払い方法、内側はタグに応じた色となっている。  
   特定の日付をクリックすることで、利用額の詳細が表示される。(e. 日毎の利用額詳細)  
 
-  ![alt text](<スクリーンショット 2024-10-25 18.20.04.png>)
+  <img width="600" alt="スクリーンショット 2024-10-25 18 20 04" src="https://github.com/user-attachments/assets/93bc58c9-a894-4d46-baaa-b3155d96387b">
+
 </details>
 
 <details>
@@ -79,13 +81,15 @@
   </summary>
 
   カレンダーの特定の日付をクリックすることで、利用額の詳細一覧が表示される。  
-  ![alt text](<スクリーンショット 2024-11-30 16.40.12.png>)
+  ![スクリーンショット 2024-11-30 16 40 12](https://github.com/user-attachments/assets/3a51b510-1c4c-455a-8cf1-3ea838a62561)
 
   現金の場合は、ここでデータの修正および削除が可能。  
-  ![alt text](<スクリーンショット 2024-11-30 16.42.34.png>)
+  <img width="500" alt="スクリーンショット 2024-11-30 16 42 34" src="https://github.com/user-attachments/assets/f047fe69-fbe1-45bd-bd9a-51e5fa40ff8e">
 
   クレジットカードの場合はタグ変更のみ可能。  
-  ![alt text](<スクリーンショット 2024-11-30 16.41.33.png>)
+  <img width="500" alt="スクリーンショット 2024-11-30 16 41 33" src="https://github.com/user-attachments/assets/05575091-4d00-49db-b316-0f2ca3229288">
+
+
 </details>
 
 ## 2. 使用技術
@@ -101,11 +105,12 @@ CloudFrontを経由してアプリケーションへのアクセスが可能で�
 (イオンカードはワンタイムパスワードが必要であったため、バッチ処理を実装できず。)
 S3に利用明細がセットされることを契機に、テーブルに新規データを追加するLambdaが起動される。  
 
-![alt text](<スクリーンショット 2024-11-30 16.51.30.png>)
+<img width="1000" alt="スクリーンショット 2024-11-30 16 51 30" src="https://github.com/user-attachments/assets/a315c98d-1055-4c48-b7c0-1d751f8cd96a">
 
 フロントエンド、バックエンドおよびバッチ処理を分けた実装をすることで、それぞれに対してCI/CDを構築可能にした。
-環境変数は全てSecretsManagerにて管理されている。
-![alt text](<スクリーンショット 2024-11-30 16.52.53.png>)
+環境変数は全てSecretsManagerにて管理されている。  
+<img width="600" alt="スクリーンショット 2024-11-30 16 52 53" src="https://github.com/user-attachments/assets/c2172df8-3ba8-4190-b628-688d337480f6">
+
 
 ## 4. ディレクトリ構成
 
