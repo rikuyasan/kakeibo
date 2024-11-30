@@ -1,4 +1,0 @@
-locals.tf
-provider.local.tf
-.terraform.lock.hcl
-/.terraform
