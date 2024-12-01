@@ -1,3 +1,4 @@
 .DS_Store
 /backend/.DS_Store
 /lambda/.DS_Store
+.env

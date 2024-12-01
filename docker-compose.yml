@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: dev_database
+    build:
+      context: ./db
+      args:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
+    networks:
+      dev_network:
+        ipv4_address: ${DB_HOST}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    container_name: dev_backend
+    build:
+      context: ./backend
+      args:
+        - DB_PORT=${DB_PORT}
+        - DB_HOST=${DB_HOST}
+        - DB_NAME=${DB_NAME}
+        - DB_PASSWORD=${DB_PASSWORD}
+        - DB_USER=${DB_USER}
+    volumes:
+      - ./backend:/usr/src/app
+      - backend_node_modules:/usr/src/app/node_modules
+    ports:
+      - 80:80
+    networks:
+      dev_network:
+        ipv4_address: ${BACKEND_HOST}
+    
+  frontend:
+    container_name: dev_frontend
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_API_RAKUTEN=${REACT_APP_API_RAKUTEN}
+        - REACT_APP_API_AEON=${REACT_APP_API_AEON}
+        - REACT_APP_API_CASH=${REACT_APP_API_CASH}
+        - REACT_APP_API=${REACT_APP_API}
+    volumes:
+      - ./frontend:/usr/src/app
+      - frontend_node_modules:/usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    networks:
+      dev_network:
+        ipv4_address: ${FRONTEND_HOST}
+
+
+volumes:
+  db_data:
+  backend_node_modules:
+  frontend_node_modules:
+
+networks:
+  dev_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SUBNET}
