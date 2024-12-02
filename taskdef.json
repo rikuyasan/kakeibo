@@ -25,7 +25,41 @@
                     "awslogs-stream-prefix": "ecs"
                 }
             },
-            "systemControls": []
+            "systemControls": [],
+            "secrets": [
+                {
+                    "name": "AWS_ACCOUNT_ID",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:AWS_ACCOUNT_ID::"
+                },
+                {
+                    "name": "IMAGE_REPO_NAME",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:IMAGE_REPO_NAME::"
+                },
+                {
+                    "name": "AWS_DEFAULT_REGION",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:AWS_DEFAULT_REGION::"
+                },
+                {
+                    "name": "DB_PORT",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:DB_PORT::"
+                },
+                {
+                    "name": "DB_HOST",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:DB_HOST::"
+                },
+                {
+                    "name": "DB_NAME",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:DB_NAME::"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:DB_PASSWORD::"
+                },
+                {
+                    "name": "DB_USER",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:730335258866:secret:kakeibo/backend-5LdAEs:DB_USER::"
+                }
+            ]
         }
     ],
     "family": "kakeibo",
