@@ -17,6 +17,7 @@ ENV DB_USER=$DB_USER
 COPY package*.json ./
 
 RUN npm install
+RUN echo "test"
 
 COPY . .
 RUN npm run tsc
