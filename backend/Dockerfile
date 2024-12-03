@@ -5,7 +5,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
-RUN echo "test"
 
 COPY . .
 RUN npm run tsc
