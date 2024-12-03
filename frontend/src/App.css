@@ -288,7 +288,7 @@ button#submit:disabled {
 header {
   width: 100%; /* 幅いっぱいを指定 */
   height: 150px; /* 高さを50pxに指定 */
-  background: #ADD8E6; /* 背景色にグレーを指定 */
+  background: #71ea5b; /* 背景色にグレーを指定 */
   padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
   box-sizing: border-box; /* padding分を含んで幅を100%にするため */
   position: fixed; /* ウィンドウを基準に画面に固定 */
