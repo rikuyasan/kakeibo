@@ -23,14 +23,9 @@ services:
     build:
       context: ./backend
       args:
-        - DB_PORT=${DB_PORT}
-        - DB_HOST=${DB_HOST}
-        - DB_NAME=${DB_NAME}
-        - DB_PASSWORD=${DB_PASSWORD}
-        - DB_USER=${DB_USER}
+        - DATABASE_URL=${DATABASE_URL}
     volumes:
       - ./backend:/usr/src/app
-      - backend_node_modules:/usr/src/app/node_modules
     ports:
       - 80:80
     networks:

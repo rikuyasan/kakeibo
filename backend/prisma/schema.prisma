@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// マイグレーションする際、シャドウテーブル(新規作成されるテーブル、開発環境のみ)に関する権限漏要注意
+model Payment {
+  id             Int     @id @default(autoincrement())
+  date           String @db.VarChar(10) // 支払日(yyyy-MM-dd)
+  name           String @db.VarChar(100) // 支払いの詳細
+  payment        Int // 価格
+  category       String @db.VarChar(10) // タグ
+  paymentMethod  String  @db.VarChar(50) // 支払い方法を識別 (rakuten, aeon, cash)
+  yearMonth      Int  // 年月を識別、検索用 (ex: "202411")
+}
